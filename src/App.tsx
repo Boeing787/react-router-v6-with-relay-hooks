@@ -1,6 +1,6 @@
 import React from 'react';
 import { RelayEnvironmentProvider, preloadQuery } from 'react-relay/hooks';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, useRoutes } from 'react-router-dom';
 import { Home } from './Home';
 import ConferencesQuery from './__generated__/ConferencesQuery.graphql';
 import { relayEnvironment } from './relay/Environment';
@@ -15,14 +15,24 @@ const conferencesQuery = () =>
     }
   );
 
+const Routes = () => {
+  const element = useRoutes([
+    {
+      element: Home,
+      path: '/',
+      preload: conferencesQuery,
+    },
+  ]);
+
+  return element;
+};
+
 export const App = () => {
   return (
     <RelayEnvironmentProvider environment={relayEnvironment}>
       <React.Suspense fallback="Loading">
         <BrowserRouter>
-          <Routes>
-            <Route element={<Home />} path="/" preload={conferencesQuery} />
-          </Routes>
+          <Routes />
         </BrowserRouter>
       </React.Suspense>
     </RelayEnvironmentProvider>
