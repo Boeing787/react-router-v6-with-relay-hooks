@@ -5,8 +5,8 @@ import { Home } from './Home';
 import ConferencesQuery from './__generated__/ConferencesQuery.graphql';
 import { relayEnvironment } from './relay/Environment';
 
-const conferencesQuery = () =>
-  preloadQuery(
+const conferencesQuery = () => {
+  const preloadedQuery = preloadQuery(
     relayEnvironment,
     ConferencesQuery,
     {},
@@ -15,10 +15,15 @@ const conferencesQuery = () =>
     }
   );
 
+  return {
+    data: preloadedQuery,
+  };
+};
+
 const Routes = () => {
   const element = useRoutes([
     {
-      element: Home,
+      element: <Home />,
       path: '/',
       preload: conferencesQuery,
     },
