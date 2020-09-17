@@ -1,0 +1,66 @@
+{
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "canonical",
+    "canonical/react",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "prettier/@typescript-eslint",
+    "prettier/babel",
+    "prettier/react",
+    "prettier/unicorn"
+  ],
+  "root": true,
+  "rules": {
+    "class-methods-use-this": 0,
+    "filenames/match-regex": 0,
+    "no-unused-vars": 0,
+    "arrow-body-style": 0,
+    "react/no-multi-comp": 0,
+    "no-extra-parens": 0,
+    "import/max-dependencies": 0,
+    "id-length": 0,
+    "filenames/match-exported": 0,
+    "react/jsx-no-bind": 0,
+    "import/no-namespace": 0,
+    "import/no-unresolved": 0,
+    "object-curly-newline": 0,
+    "no-nested-ternary": 0,
+    "react/require-default-props": 0,
+    // Allows us to use .graphql extensions for importing relay artifacts
+    "import/extensions": 0,
+    // There are types to be explicit and times to use inference.
+    // React components are good example of place I like inference for return types.
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    // Disabled because in TS files we usually declare types at the top of the file, and in cases we need to export them.
+    "import/exports-last": 0,
+    "react/jsx-boolean-value": 0
+  },
+  "overrides": [
+    {
+      "files": ["**/*.d.ts"],
+      "rules": {
+        "@typescript-eslint/ban-types": 0,
+        "@typescript-eslint/no-explicit-any": 0,
+        "import/unambiguous": 0
+      }
+    },
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": 2,
+        "@typescript-eslint/no-empty-function": [
+          2,
+          { "allow": ["arrowFunctions"] }
+        ],
+        "import/no-unassigned-import": 0
+      }
+    }
+  ]
+}
