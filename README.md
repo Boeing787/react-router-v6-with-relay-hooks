@@ -1,6 +1,6 @@
 # React Router V6 + Relay Hooks POC
 
-**Please note that this repo is merely a work in progress and is currently not yet ready for use**
+**Please note that this repo is merely a work in progress and is currently not yet ready for use. It does not work and should not be taken as a successful example of React Router v6 and Relay hooks working together.**
 
 ```bash
 yarn
